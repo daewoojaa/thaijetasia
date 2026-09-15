@@ -5,7 +5,7 @@ import AppBar from "@/components/AppBar";
 import SearchCard from "@/components/SearchCard";
 import FlightCard from "@/components/FlightCard";
 import BottomNav from "@/components/BottomNav";
-import { FLIGHTS, DEFAULT_SEATS_LABEL } from "@/lib/flights";
+import { FLIGHTS } from "@/lib/flights";
 import styles from "./page.module.css";
 
 type Trip = {
@@ -17,7 +17,7 @@ type Trip = {
   pax: string;
 };
 
-type FlightField = "dep" | "arr" | "code" | "from" | "to" | "dur" | "price" | "seats";
+type FlightField = "dep" | "arr" | "code" | "from" | "to" | "dur" | "price";
 type FlightOverrides = Record<string, Partial<Record<FlightField, string>>>;
 
 function readText(el: HTMLElement | null, fallback: string) {
@@ -87,7 +87,6 @@ export default function Home() {
         price: base.price,
         from: trip ? trip.oc : "",
         to: trip ? trip.dc : "",
-        seats: DEFAULT_SEATS_LABEL,
       };
 
       card.querySelectorAll<HTMLElement>("[data-field]").forEach((el) => {
@@ -127,7 +126,6 @@ export default function Home() {
     ...f,
     from: trip ? trip.oc : "",
     to: trip ? trip.dc : "",
-    seats: DEFAULT_SEATS_LABEL,
     ...overrides[f.id],
   }));
   if (sort === "price") {

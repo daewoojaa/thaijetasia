@@ -3,9 +3,10 @@
 import Editable from "./Editable";
 import type { Flight } from "@/lib/flights";
 import styles from "./FlightCard.module.css";
+/* eslint-disable @next/next/no-img-element */
 
 type FlightCardProps = {
-  flight: Flight & { from: string; to: string; seats: string };
+  flight: Flight & { from: string; to: string };
   locked: boolean;
 };
 
@@ -14,16 +15,9 @@ export default function FlightCard({ flight, locked }: FlightCardProps) {
     <div className={styles.card} data-flight={flight.id}>
       <div className={styles.top}>
         <div className={styles.codeGroup}>
-          <span className={styles.plane}>✈</span>
+          <img src="/brand/tja-icon.png" alt="" className={styles.planeIcon} />
           <Editable as="span" field="code" defaultValue={flight.code} locked={locked} />
         </div>
-        <Editable
-          as="span"
-          field="seats"
-          defaultValue={flight.seats}
-          locked={locked}
-          className={styles.seatsBadge}
-        />
       </div>
 
       <div className={styles.timesRow}>
