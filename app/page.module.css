@@ -1,0 +1,73 @@
+.page {
+  min-height: 100vh;
+  background: #f2f4f7;
+}
+
+.content {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 14px 14px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resultsHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2px 4px;
+}
+
+.resultsHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.resultsKicker {
+  font: 600 12px/1 "IBM Plex Sans Thai", sans-serif;
+  color: #25336f;
+}
+
+.route {
+  font: 600 15.5px/1.3 "IBM Plex Sans Thai", sans-serif;
+  color: #1b2650;
+}
+
+.tripMeta {
+  font: 400 11.5px/1.2 "IBM Plex Sans Thai", sans-serif;
+  color: #8892a8;
+}
+
+.sortPill {
+  flex: none;
+  font: 600 11.5px/1 "IBM Plex Sans Thai", sans-serif;
+  color: #25336f;
+  background: #fff;
+  border: 1px solid rgba(35, 48, 107, 0.16);
+  border-radius: 20px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.flightList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footnote {
+  text-align: center;
+  font: 400 11px/1.4 "IBM Plex Sans Thai", sans-serif;
+  color: #96a0b5;
+  padding: 6px 20px 0;
+}

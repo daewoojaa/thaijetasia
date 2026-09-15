@@ -1,0 +1,94 @@
+.card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(22, 30, 60, 0.07), 0 0 0 1px rgba(22, 30, 60, 0.05);
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  animation: tjaIn 0.32s ease both;
+  transition: box-shadow 0.12s;
+}
+
+.card:hover {
+  box-shadow: 0 6px 18px -8px rgba(22, 30, 60, 0.35), 0 0 0 1px rgba(35, 48, 107, 0.18);
+}
+
+@keyframes tjaIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.mark {
+  width: 44px;
+  display: block;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.timesRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.time {
+  font: 600 17px/1.2 "IBM Plex Sans", sans-serif;
+  color: #1b2650;
+}
+
+.timeSep {
+  flex: none;
+  width: 26px;
+  height: 1px;
+  background: #c6cede;
+  display: block;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 400 10.5px/1.2 "IBM Plex Sans Thai", sans-serif;
+  color: #8892a8;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.priceBlock {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.priceLabel {
+  font: 400 9.5px/1 "IBM Plex Sans Thai", sans-serif;
+  color: #8892a8;
+}
+
+.price {
+  font: 700 16px/1.1 "IBM Plex Sans", sans-serif;
+  color: #25336f;
+}
+
+.chevron {
+  color: #b6bfd2;
+  font: 600 15px/1 "IBM Plex Sans", sans-serif;
+}

@@ -1,0 +1,75 @@
+.nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 100%;
+  max-width: 430px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(22, 30, 60, 0.09);
+  padding: 9px 8px 18px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #9aa4ba;
+  font: 500 10px/1 "IBM Plex Sans Thai", sans-serif;
+  cursor: default;
+  transition: color 0.12s;
+}
+
+.item:last-child,
+.item:nth-child(3) {
+  cursor: pointer;
+}
+
+.item:nth-child(3):hover {
+  color: #1f2d5e;
+}
+
+.itemActive {
+  color: #25336f;
+  font-weight: 600;
+}
+
+.iconCircle {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #25336f;
+  border-radius: 50%;
+  display: block;
+}
+
+.iconRect {
+  width: 14px;
+  height: 15px;
+  border: 2px solid #9aa4ba;
+  border-radius: 3px;
+  display: block;
+}
+
+.iconLock {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #9aa4ba;
+  border-radius: 3px;
+  border-left-width: 6px;
+  display: block;
+}
+
+.iconDots {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9aa4ba;
+  font: 700 14px/1 "IBM Plex Sans", sans-serif;
+}

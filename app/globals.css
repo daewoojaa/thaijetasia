@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f2f4f7;
+  font-family: "IBM Plex Sans Thai", "IBM Plex Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+[contenteditable="true"] {
+  outline: none;
+  cursor: text;
+  border-radius: 3px;
+  transition: background 0.12s;
+}
+
+[contenteditable="true"]:hover {
+  background: rgba(35, 48, 107, 0.08);
+  box-shadow: 0 0 0 2px rgba(35, 48, 107, 0.08);
+}
+
+[contenteditable="true"]:focus {
+  background: rgba(35, 48, 107, 0.06);
+  box-shadow: 0 0 0 2px rgba(35, 48, 107, 0.45);
+}

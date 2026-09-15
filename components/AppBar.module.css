@@ -1,0 +1,70 @@
+.bar {
+  background: #fff;
+  padding: 16px 18px 0;
+  color: #1f2d5e;
+  box-shadow: 0 1px 0 rgba(22, 30, 60, 0.07);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 0 14px;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5px;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.12s;
+}
+
+.hamburger:hover {
+  background: rgba(31, 45, 94, 0.08);
+}
+
+.bunLine {
+  width: 19px;
+  height: 2px;
+  background: #1f2d5e;
+  display: block;
+  border-radius: 2px;
+}
+
+.logo {
+  height: 39px;
+  width: auto;
+  display: block;
+  clip-path: inset(4% 1.2%);
+}
+
+.account {
+  display: block;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  font: 600 13px/1 "IBM Plex Sans Thai", sans-serif;
+  border-bottom: 1px solid rgba(22, 30, 60, 0.09);
+}
+
+.tab {
+  text-align: center;
+  padding: 10px 0 11px;
+  border-bottom: 2.5px solid transparent;
+  color: #9aa4ba;
+  font-weight: 500;
+  margin-bottom: -1px;
+}
+
+.tabActive {
+  border-bottom-color: #1f2d5e;
+  color: #1f2d5e;
+  font-weight: 600;
+}
