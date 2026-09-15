@@ -140,9 +140,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className={styles.footnote}>
-              ราคารวมภาษีและค่าธรรมเนียม · แตะที่ข้อความใดก็ได้เพื่อแก้ไข
-            </div>
+            <div className={styles.footnote}>ราคารวมภาษีและค่าธรรมเนียม</div>
           </div>
         )}
       </div>
