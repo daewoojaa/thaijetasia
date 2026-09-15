@@ -17,6 +17,9 @@ type Trip = {
   pax: string;
 };
 
+type FlightField = "dep" | "arr" | "code" | "from" | "to" | "dur" | "price";
+type FlightOverrides = Record<string, Partial<Record<FlightField, string>>>;
+
 function readText(el: HTMLElement | null, fallback: string) {
   const v = (el?.textContent || "").trim();
   return v || fallback;
@@ -27,6 +30,7 @@ export default function Home() {
   const [sort, setSort] = useState<"time" | "price">("time");
   const [trip, setTrip] = useState<Trip | null>(null);
   const [locked, setLocked] = useState(false);
+  const [overrides, setOverrides] = useState<FlightOverrides>({});
 
   const originRef = useRef<HTMLDivElement>(null);
   const originCodeRef = useRef<HTMLDivElement>(null);
@@ -34,6 +38,7 @@ export default function Home() {
   const destCodeRef = useRef<HTMLDivElement>(null);
   const dateRef = useRef<HTMLDivElement>(null);
   const paxRef = useRef<HTMLDivElement>(null);
+  const flightListRef = useRef<HTMLDivElement>(null);
 
   const runSearch = () => {
     setSearched(true);
@@ -61,9 +66,46 @@ export default function Home() {
     if (searched) runSearch();
   };
 
+  // Reads whatever is currently on screen for each flight card and stores
+  // only the fields that differ from their computed default, so edits made
+  // before hitting reset are still there after the next search.
+  const captureFlightEdits = () => {
+    const container = flightListRef.current;
+    if (!container) return;
+
+    const next: FlightOverrides = { ...overrides };
+    container.querySelectorAll<HTMLElement>("[data-flight]").forEach((card) => {
+      const code = card.dataset.flight;
+      const base = code ? FLIGHTS.find((f) => f.code === code) : undefined;
+      if (!code || !base) return;
+
+      const expected: Record<FlightField, string> = {
+        dep: base.dep,
+        arr: base.arr,
+        code: base.code,
+        dur: base.dur,
+        price: base.price,
+        from: trip ? trip.oc : "",
+        to: trip ? trip.dc : "",
+      };
+
+      card.querySelectorAll<HTMLElement>("[data-field]").forEach((el) => {
+        const key = el.dataset.field as FlightField | undefined;
+        if (!key) return;
+        const text = (el.textContent || "").trim();
+        if (text && text !== expected[key]) {
+          next[code] = { ...next[code], [key]: text };
+        }
+      });
+    });
+    setOverrides(next);
+  };
+
   const reset = () => {
-    // Keep whatever text is currently in the search fields (edited or not) —
-    // only hide the results and return to a fresh search state.
+    // Keep whatever text is currently in the search fields (edited or not),
+    // and remember any flight-card edits too — only hide the results and
+    // return to a fresh search state.
+    captureFlightEdits();
     setSearched(false);
     setSort("time");
     setTrip(null);
@@ -81,9 +123,11 @@ export default function Home() {
   };
 
   let flights = FLIGHTS.map((f) => ({
+    seedCode: f.code,
     ...f,
     from: trip ? trip.oc : "",
     to: trip ? trip.dc : "",
+    ...overrides[f.code],
   }));
   if (sort === "price") {
     flights = [...flights].sort((a, b) => a.n - b.n);
@@ -125,9 +169,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className={styles.flightList}>
-              {flights.map((f, i) => (
-                <FlightCard key={f.code + i} flight={f} locked={locked} />
+            <div className={styles.flightList} ref={flightListRef}>
+              {flights.map((f) => (
+                <FlightCard key={f.seedCode} flight={f} locked={locked} />
               ))}
             </div>
 

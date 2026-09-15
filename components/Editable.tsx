@@ -9,6 +9,8 @@ type EditableProps = {
   style?: CSSProperties;
   className?: string;
   ref?: Ref<HTMLDivElement | HTMLSpanElement>;
+  /** Tags the element with data-field, so a container can read it back by name. */
+  field?: string;
 };
 
 export default function Editable({
@@ -18,6 +20,7 @@ export default function Editable({
   style,
   className,
   ref,
+  field,
 }: EditableProps) {
   return (
     <Tag
@@ -26,6 +29,7 @@ export default function Editable({
       suppressContentEditableWarning
       className={className}
       style={style}
+      data-field={field}
     >
       {defaultValue}
     </Tag>

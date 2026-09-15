@@ -13,10 +13,10 @@ export const FLIGHTS: Flight[] = [
   { dep: "09:40", arr: "11:10", code: "TJ 1414", dur: "1 ชม. 30 น.", price: "฿1,540", n: 1540 },
   { dep: "11:00", arr: "12:30", code: "TJ 1416", dur: "1 ชม. 30 น.", price: "฿1,590", n: 1590 },
   { dep: "13:15", arr: "14:45", code: "TJ 1418", dur: "1 ชม. 30 น.", price: "฿1,650", n: 1650 },
-  { dep: "14:45", arr: "16:20", code: "TJ 1420", dur: "1 ชม. 35 น.", price: "฿1,690", n: 1690 },
   { dep: "15:05", arr: "16:35", code: "TJ 1421", dur: "1 ชม. 30 น.", price: "฿1,740", n: 1740 },
   { dep: "17:25", arr: "18:55", code: "TJ 1422", dur: "1 ชม. 30 น.", price: "฿1,790", n: 1790 },
   { dep: "19:50", arr: "21:20", code: "TJ 1424", dur: "1 ชม. 30 น.", price: "฿1,890", n: 1890 },
+  { dep: "22:10", arr: "23:40", code: "TJ 1420", dur: "1 ชม. 30 น.", price: "฿1,950", n: 1950 },
 ];
 
 export const DEFAULT_TRIP = {

@@ -12,21 +12,33 @@ type FlightCardProps = {
 
 export default function FlightCard({ flight, locked }: FlightCardProps) {
   return (
-    <div className={styles.card}>
+    <div className={styles.card} data-flight={flight.code}>
       <img src="/brand/tja-mark.png" alt="THAI JET ASIA" className={styles.mark} />
 
       <div className={styles.middle}>
         <div className={styles.timesRow}>
-          <Editable as="span" defaultValue={flight.dep} locked={locked} className={styles.time} />
+          <Editable
+            as="span"
+            field="dep"
+            defaultValue={flight.dep}
+            locked={locked}
+            className={styles.time}
+          />
           <span className={styles.timeSep} />
-          <Editable as="span" defaultValue={flight.arr} locked={locked} className={styles.time} />
+          <Editable
+            as="span"
+            field="arr"
+            defaultValue={flight.arr}
+            locked={locked}
+            className={styles.time}
+          />
         </div>
         <div className={styles.metaRow}>
-          <Editable as="span" defaultValue={flight.code} locked={locked} />
-          <Editable as="span" defaultValue={flight.from} locked={locked} />
+          <Editable as="span" field="code" defaultValue={flight.code} locked={locked} />
+          <Editable as="span" field="from" defaultValue={flight.from} locked={locked} />
           <span>→</span>
-          <Editable as="span" defaultValue={flight.to} locked={locked} />
-          <Editable as="span" defaultValue={flight.dur} locked={locked} />
+          <Editable as="span" field="to" defaultValue={flight.to} locked={locked} />
+          <Editable as="span" field="dur" defaultValue={flight.dur} locked={locked} />
         </div>
       </div>
 
@@ -35,6 +47,7 @@ export default function FlightCard({ flight, locked }: FlightCardProps) {
           <span className={styles.priceLabel}>เริ่มต้น</span>
           <Editable
             as="span"
+            field="price"
             defaultValue={flight.price}
             locked={locked}
             className={styles.price}
