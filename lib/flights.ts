@@ -1,4 +1,8 @@
 export type Flight = {
+  /** Stable identity for this seed row — not displayed, never edited. Every
+   * flight currently shares the same visible `code`, so this is what list
+   * keys and edit-override storage key off instead. */
+  id: string;
   dep: string;
   arr: string;
   code: string;
@@ -8,16 +12,14 @@ export type Flight = {
 };
 
 export const FLIGHTS: Flight[] = [
-  { dep: "06:20", arr: "07:50", code: "TJ 1410", dur: "1 ชม. 30 น.", price: "฿1,490", n: 1490 },
-  { dep: "08:05", arr: "09:35", code: "TJ 1412", dur: "1 ชม. 30 น.", price: "฿1,390", n: 1390 },
-  { dep: "09:40", arr: "11:10", code: "TJ 1414", dur: "1 ชม. 30 น.", price: "฿1,540", n: 1540 },
-  { dep: "11:00", arr: "12:30", code: "TJ 1416", dur: "1 ชม. 30 น.", price: "฿1,590", n: 1590 },
-  { dep: "13:15", arr: "14:45", code: "TJ 1418", dur: "1 ชม. 30 น.", price: "฿1,650", n: 1650 },
-  { dep: "15:05", arr: "16:35", code: "TJ 1421", dur: "1 ชม. 30 น.", price: "฿1,740", n: 1740 },
-  { dep: "17:25", arr: "18:55", code: "TJ 1422", dur: "1 ชม. 30 น.", price: "฿1,790", n: 1790 },
-  { dep: "19:50", arr: "21:20", code: "TJ 1424", dur: "1 ชม. 30 น.", price: "฿1,890", n: 1890 },
-  { dep: "22:10", arr: "23:40", code: "TJ 1420", dur: "1 ชม. 30 น.", price: "฿1,950", n: 1950 },
+  { id: "f1", dep: "06:20", arr: "07:50", code: "TJ1432", dur: "1 ชม. 30 น.", price: "฿1,490", n: 1490 },
+  { id: "f2", dep: "09:40", arr: "11:10", code: "TJ1432", dur: "1 ชม. 30 น.", price: "฿1,540", n: 1540 },
+  { id: "f3", dep: "11:00", arr: "12:30", code: "TJ1432", dur: "1 ชม. 30 น.", price: "฿1,590", n: 1590 },
+  { id: "f4", dep: "15:00", arr: "16:05", code: "TJ1432", dur: "1 ชม. 5 น.", price: "฿1,740", n: 1740 },
+  { id: "f5", dep: "19:50", arr: "21:20", code: "TJ1432", dur: "1 ชม. 30 น.", price: "฿1,890", n: 1890 },
 ];
+
+export const DEFAULT_SEATS_LABEL = "ที่นั่งจำกัด";
 
 export const DEFAULT_TRIP = {
   origin: "สกลนคร",

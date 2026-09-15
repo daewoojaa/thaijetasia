@@ -5,7 +5,7 @@ import AppBar from "@/components/AppBar";
 import SearchCard from "@/components/SearchCard";
 import FlightCard from "@/components/FlightCard";
 import BottomNav from "@/components/BottomNav";
-import { FLIGHTS } from "@/lib/flights";
+import { FLIGHTS, DEFAULT_SEATS_LABEL } from "@/lib/flights";
 import styles from "./page.module.css";
 
 type Trip = {
@@ -17,7 +17,7 @@ type Trip = {
   pax: string;
 };
 
-type FlightField = "dep" | "arr" | "code" | "from" | "to" | "dur" | "price";
+type FlightField = "dep" | "arr" | "code" | "from" | "to" | "dur" | "price" | "seats";
 type FlightOverrides = Record<string, Partial<Record<FlightField, string>>>;
 
 function readText(el: HTMLElement | null, fallback: string) {
@@ -75,9 +75,9 @@ export default function Home() {
 
     const next: FlightOverrides = { ...overrides };
     container.querySelectorAll<HTMLElement>("[data-flight]").forEach((card) => {
-      const code = card.dataset.flight;
-      const base = code ? FLIGHTS.find((f) => f.code === code) : undefined;
-      if (!code || !base) return;
+      const id = card.dataset.flight;
+      const base = id ? FLIGHTS.find((f) => f.id === id) : undefined;
+      if (!id || !base) return;
 
       const expected: Record<FlightField, string> = {
         dep: base.dep,
@@ -87,6 +87,7 @@ export default function Home() {
         price: base.price,
         from: trip ? trip.oc : "",
         to: trip ? trip.dc : "",
+        seats: DEFAULT_SEATS_LABEL,
       };
 
       card.querySelectorAll<HTMLElement>("[data-field]").forEach((el) => {
@@ -94,7 +95,7 @@ export default function Home() {
         if (!key) return;
         const text = (el.textContent || "").trim();
         if (text && text !== expected[key]) {
-          next[code] = { ...next[code], [key]: text };
+          next[id] = { ...next[id], [key]: text };
         }
       });
     });
@@ -123,11 +124,11 @@ export default function Home() {
   };
 
   let flights = FLIGHTS.map((f) => ({
-    seedCode: f.code,
     ...f,
     from: trip ? trip.oc : "",
     to: trip ? trip.dc : "",
-    ...overrides[f.code],
+    seats: DEFAULT_SEATS_LABEL,
+    ...overrides[f.id],
   }));
   if (sort === "price") {
     flights = [...flights].sort((a, b) => a.n - b.n);
@@ -171,7 +172,7 @@ export default function Home() {
 
             <div className={styles.flightList} ref={flightListRef}>
               {flights.map((f) => (
-                <FlightCard key={f.seedCode} flight={f} locked={locked} />
+                <FlightCard key={f.id} flight={f} locked={locked} />
               ))}
             </div>
 
