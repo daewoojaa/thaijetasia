@@ -5,7 +5,7 @@ import AppBar from "@/components/AppBar";
 import SearchCard from "@/components/SearchCard";
 import FlightCard from "@/components/FlightCard";
 import BottomNav from "@/components/BottomNav";
-import { FLIGHTS, DEFAULT_TRIP } from "@/lib/flights";
+import { FLIGHTS } from "@/lib/flights";
 import styles from "./page.module.css";
 
 type Trip = {
@@ -62,17 +62,8 @@ export default function Home() {
   };
 
   const reset = () => {
-    const defaults: [typeof originRef, string][] = [
-      [originRef, DEFAULT_TRIP.origin],
-      [originCodeRef, DEFAULT_TRIP.originCode],
-      [destRef, DEFAULT_TRIP.dest],
-      [destCodeRef, DEFAULT_TRIP.destCode],
-      [dateRef, DEFAULT_TRIP.date],
-      [paxRef, DEFAULT_TRIP.pax],
-    ];
-    defaults.forEach(([r, v]) => {
-      if (r.current) r.current.textContent = v;
-    });
+    // Keep whatever text is currently in the search fields (edited or not) —
+    // only hide the results and return to a fresh search state.
     setSearched(false);
     setSort("time");
     setTrip(null);
